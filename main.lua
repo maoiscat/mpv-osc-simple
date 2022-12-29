@@ -8,7 +8,7 @@ local assdraw = require 'mp.assdraw'
 mp.commandv('set', 'osc', 'no')
 
 -- change this number to resize your osc
-opts.scale = 2
+opts.scale = 1
 
 -- styles
 styles = {
