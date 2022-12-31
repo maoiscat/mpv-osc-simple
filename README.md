@@ -1,5 +1,5 @@
 # mpv-osc-simple
-another mpv osc script
+another mpv osc script using my [oscf](https://github.com/maoiscat/mpv-osc-framework) tool.
 
 ![img](https://github.com/maoiscat/mpv-osc-simple/blob/main/preview.png)
 
