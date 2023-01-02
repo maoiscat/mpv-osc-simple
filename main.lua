@@ -7,8 +7,13 @@ local assdraw = require 'mp.assdraw'
 
 mp.commandv('set', 'osc', 'no')
 
--- change this number to resize your osc
-opts.scale = 1
+-- user options
+opts = {
+    scale = 1,              -- osc render scale
+    fixedHeight = false,    -- true to allow osc scale with window
+    hideTimeout = 1,        -- seconds untile osc hides, negative means never
+    fadeDuration = 0.5,     -- seconds during fade out, negative means never
+    }
 
 -- styles
 styles = {
