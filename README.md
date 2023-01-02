@@ -21,4 +21,4 @@ another mpv osc script using my [oscf](https://github.com/maoiscat/mpv-osc-frame
   
   3. Click the duration time will cycle between duration and remaining time
 
-  4. If anyone feels the osc too small, open ''main.lua'' with any text editor, locate then ''user options'' comment, and change *scale* below.
+  4. If anyone feels the osc too small, open ''main.lua'' with any text editor, locate the ''user options'' comment, and change **scale** below.
