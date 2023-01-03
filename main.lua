@@ -39,7 +39,7 @@ styles = {
         font = 'mpv-osd-symbols',
         fontsize = 16
         },
-	button2 = {
+    button2 = {
         color = {'0', '0', '0', '0'},
         alpha = {0, 255, 255, 255},
         blur = 0,
@@ -47,26 +47,26 @@ styles = {
         font = 'mpv-osd-symbols',
         fontsize = 16
         },
-	seekbarF = {
-		color = {'C7A25A', '0', '0', '0'},
-		alpha = {0, 255, 255, 255},
-		blur = 0,
-		border = 0,
-		},
-	seekbarB = {
-		color = {'C0C0C0', '0', '0', '0'},
-		alpha = {0, 255, 255, 255},
-		blur = 0,
-		border = 0,
-		},
-	down = {
-		color = {'999999', '0', '0', '0'},
-		alpha = {0, 255, 255, 255},
-		blur = 0,
-		border = 0,
+    seekbarF = {
+        color = {'C7A25A', '0', '0', '0'},
+        alpha = {0, 255, 255, 255},
+        blur = 0,
+        border = 0,
+        },
+    seekbarB = {
+        color = {'C0C0C0', '0', '0', '0'},
+        alpha = {0, 255, 255, 255},
+        blur = 0,
+        border = 0,
+        },
+    down = {
+        color = {'999999', '0', '0', '0'},
+        alpha = {0, 255, 255, 255},
+        blur = 0,
+        border = 0,
         font = 'mpv-osd-symbols',
         fontsize = 16
-		},
+        },
     title = {
         color = {'ffffff', 'ffffff', '0', '0'},
         border = 0.5,
@@ -82,7 +82,7 @@ styles = {
         font = 'mpv-osd-symbols',
         fontsize = 20,
         },
-	top2 = {
+    top2 = {
         color = {'ffffff', 'ffffff', '0', '0'},
         alpha = {0, 255, 0, 255},
         border = 0.5,
@@ -161,10 +161,10 @@ ne.tick = function(self)
         return ''
     end
 ne.responder['resize'] = function(self)
-		setPlayActiveArea('area1', 0, player.geo.height-100, player.geo.width, player.geo.height)
-		setPlayActiveArea('area2', 0, 0, player.geo.width, 24)
-		player.geo.refX = player.geo.width / 2
-		player.geo.refY = player.geo.height - 25
+        setPlayActiveArea('area1', 0, player.geo.height-100, player.geo.width, player.geo.height)
+        setPlayActiveArea('area2', 0, 0, player.geo.width, 24)
+        player.geo.refX = player.geo.width / 2
+        player.geo.refY = player.geo.height - 25
         return false
     end
 ne:init()
@@ -187,12 +187,12 @@ ne.geo.r = 3
 ne.geo.an = 5
 ne.geo.h = 30
 ne.responder['resize'] = function(self)
-		self.geo.x = player.geo.refX
-		self.geo.y = player.geo.refY
-		self.geo.w = player.geo.width - 20
-		self:setPos()
-		self:render()
-	end
+        self.geo.x = player.geo.refX
+        self.geo.y = player.geo.refY
+        self.geo.w = player.geo.width - 20
+        self:setPos()
+        self:render()
+    end
 ne:init()
 addToPlayLayout('panel')
 
@@ -219,11 +219,11 @@ ne.responder['mbtn_left_up'] = function(self, pos)
         return false
     end
 ne.responder['pause'] = function(self)
-		if player.paused then
-			self.text = '{\\fscx120}\238\132\129'
-		else
-			self.text = '{\\fscx150}\238\128\130'
-		end
+        if player.paused then
+            self.text = '{\\fscx120}\238\132\129'
+        else
+            self.text = '{\\fscx150}\238\128\130'
+        end
         self:render()
         return false
     end
@@ -248,12 +248,12 @@ ne.responder['resize'] = function(self)
         self:setHitBox()
     end
 ne.responder['mbtn_left_up'] = function(self, pos)
-		if self.visible and self:isInside(pos) then
-			self.isSet = not self.isSet
-			dispatchEvent('skip-file-buttons', self.isSet)
-		end
-		return false
-	end
+        if self.visible and self:isInside(pos) then
+            self.isSet = not self.isSet
+            dispatchEvent('skip-file-buttons', self.isSet)
+        end
+        return false
+    end
 ne.responder['time'] = function(self)
         if player.timePos then
             self.pack[4] = mp.format_time(player.timePos)
@@ -306,16 +306,16 @@ ne.handleSize = 4
 ne.style1 = styles.seekbarF
 ne.style2 = styles.seekbarB
 ne.responder['resize'] = function(self)
-		self.geo.x = 110
-		self.geo.y = player.geo.refY
-		self.geo.w = player.geo.width - 290
-		self.geo.h = 20
-		self.geo.an = 4
-		self.visible = player.geo.width >= 320
-		self:setParam()
-		self:setPos()
-		self:render()
-	end
+        self.geo.x = 110
+        self.geo.y = player.geo.refY
+        self.geo.w = player.geo.width - 290
+        self.geo.h = 20
+        self.geo.an = 4
+        self.visible = player.geo.width >= 320
+        self:setParam()
+        self:setPos()
+        self:render()
+    end
 ne.responder['time'] = function(self)
         local val = player.percentPos
         if val then
@@ -324,7 +324,7 @@ ne.responder['time'] = function(self)
             self:render2()
         end
         return false
-	end
+    end
 ne.responder['file-loaded'] = function(self)
         -- update chapter markers
         self.markers = {}
@@ -337,7 +337,7 @@ ne.responder['file-loaded'] = function(self)
         return false
     end
 ne.responder['mouse_move'] = function(self, pos)
-		if not self.visible then return false end
+        if not self.visible then return false end
         local seekTo = self:getValueAt(pos)
         if self.allowDrag then
             mp.commandv('seek', seekTo, 'absolute-percent')
@@ -380,7 +380,7 @@ ne.responder['mouse_move'] = function(self, pos)
         end
     end
 ne.responder['mbtn_left_down'] = function(self, pos)
-		if not self.visible then return false end
+        if not self.visible then return false end
         if self:isInside(pos) then
             self.allowDrag = true
             local seekTo = self:getValueAt(pos)
@@ -392,11 +392,11 @@ ne.responder['mbtn_left_down'] = function(self, pos)
         return false
     end
 ne.responder['mbtn_left_up'] = function(self, pos)
-		if self.allowDrag then
-			self.allowDrag = false
-			self.lastSeek = nil
-			return true
-		end
+        if self.allowDrag then
+            self.allowDrag = false
+            self.lastSeek = nil
+            return true
+        end
     end
 ne:init()
 addToPlayLayout('seekbar')
@@ -408,21 +408,21 @@ ne.barHeight = 12
 ne.style1 = styles.button
 ne.style2 = styles.seekbarB
 ne.responder['resize'] = function(self)
-		self.geo.x = player.geo.width - 45
-		self.geo.y = player.geo.refY
-		self.geo.w = 50
-		self.geo.h = 20
-		self.geo.an = 6
-		self.visible = player.geo.width >= 200
-		self:setParam()
-		self:setPos()
-		self:render()
-	end
+        self.geo.x = player.geo.width - 45
+        self.geo.y = player.geo.refY
+        self.geo.w = 50
+        self.geo.h = 20
+        self.geo.an = 6
+        self.visible = player.geo.width >= 200
+        self:setParam()
+        self:setPos()
+        self:render()
+    end
 ne.responder['volume'] = function(self)
         local val = player.volume
         if val then
-			if val > 140 then val = 140
-				elseif val < 0 then val = 0 end
+            if val > 140 then val = 140
+                elseif val < 0 then val = 0 end
             self.value = val/1.4
             self.xValue = val/140 * self.xLength
             self:render()
@@ -440,7 +440,7 @@ ne.responder['mouse_move'] = function(self, pos)
         if self:isInside(pos) then
             local tipText
             if vol then
-				tipText = string.format('%d', vol*1.4)
+                tipText = string.format('%d', vol*1.4)
             else
                 tipText = 'N/A'
             end
@@ -464,11 +464,11 @@ ne.responder['mbtn_left_down'] = function(self, pos)
         return false
     end
 ne.responder['mbtn_left_up'] = function(self, pos)
-		if self.allowDrag then
-			self.allowDrag = false
-			self.lastSeek = nil
-			return true
-		end
+        if self.allowDrag then
+            self.allowDrag = false
+            self.lastSeek = nil
+            return true
+        end
     end
 ne:init()
 addToPlayLayout('volumeBar')
@@ -484,7 +484,7 @@ ne.geo.an = 5
 ne.geo.w = 20
 ne.geo.h = 20
 ne.responder['resize'] = function(self)
-		self.geo.x = player.geo.width - 25
+        self.geo.x = player.geo.width - 25
         self.geo.y = player.geo.refY
         self:setPos()
         self:setHitBox()
@@ -497,13 +497,13 @@ ne.responder['mbtn_left_up'] = function(self, pos)
         return false
     end
 ne.responder['fullscreen'] = function(self)
-		if player.fullscreen then
-			self.text = '{\\fscx125\\fscy125}\xee\x84\x89'
-		else
-			self.text = '{\\fscx125\\fscy125}\xee\x84\x88'
-		end
-		self:render()
-	end
+        if player.fullscreen then
+            self.text = '{\\fscx125\\fscy125}\xee\x84\x89'
+        else
+            self.text = '{\\fscx125\\fscy125}\xee\x84\x88'
+        end
+        self:render()
+    end
 ne:init()
 addToPlayLayout('btnFullscreen')
 
@@ -547,34 +547,33 @@ ne.responder['mbtn_right_up'] = function(self, pos)
     end
 ne.responder['audio-changed'] = function(self)
         if player.tracks then
-            local title
-            if player.audioTrack == 0 then
-                title = 'OFF'
-            else
+            local lang, title = nil, nil
+            if player.audioTrack > 0 then
+                lang = player.tracks.audio[player.audioTrack].lang
                 title = player.tracks.audio[player.audioTrack].title
             end
-            if not title then title = 'unknown' end
-            self.tipText = string.format('[%s/%s][%s]',
-                player.audioTrack, #player.tracks.audio, title)
-                tooltip:update(self.tipText, self)
+            if lang then lang = '[' .. lang .. ']' else lang = '' end
+            if title then title = '[' .. title .. ']' else title = '' end
+            self.tipText = string.format('[%s/%s]%s%s', player.audioTrack, #player.tracks.audio, lang, title)
+            tooltip:update(self.tipText, self)
         end
         return false
     end
 ne.responder['mouse_move'] = function(self, pos)
         if not self.visible then return false end
-		local check = self:isInside(pos)
-		if check and not self.active then
-			self.active = true
-			self.style = self.styleActive
-			self:setStyle()
-			tooltip:show(self.tipText, {self.geo.x+10, self.geo.y, 4}, self)
-		elseif not check and self.active then
-			self.active = false
-			self.style = self.styleNormal
-			self:setStyle()
-			tooltip:hide(self)
-		end
-		return false
+        local check = self:isInside(pos)
+        if check and not self.active then
+            self.active = true
+            self.style = self.styleActive
+            self:setStyle()
+            tooltip:show(self.tipText, {self.geo.x+10, self.geo.y, 4}, self)
+        elseif not check and self.active then
+            self.active = false
+            self.style = self.styleNormal
+            self:setStyle()
+            tooltip:hide(self)
+        end
+        return false
     end
 ne:init()
 addToPlayLayout('btnAudio')
@@ -620,34 +619,33 @@ ne.responder['mbtn_right_up'] = function(self, pos)
     end
 ne.responder['sub-changed'] = function(self)
         if player.tracks then
-            local title
-            if player.subTrack == 0 then
-                title = 'OFF'
-            else
+            local lang, title = nil, nil
+            if player.subTrack > 0 then
+                lang = player.tracks.sub[player.subTrack].lang
                 title = player.tracks.sub[player.subTrack].title
             end
-            if not title then title = 'unknown' end
-            self.tipText = string.format('[%s/%s][%s]',
-                player.subTrack, #player.tracks.sub, title)
-                tooltip:update(self.tipText, self)
+            if lang then lang = '[' .. lang .. ']' else lang = '' end
+            if title then title = '[' .. title .. ']' else title = '' end
+            self.tipText = string.format('[%s/%s]%s%s', player.subTrack, #player.tracks.sub, lang, title)
+            tooltip:update(self.tipText, self)
         end
         return false
     end
 ne.responder['mouse_move'] = function(self, pos)
         if not self.visible then return false end
-		local check = self:isInside(pos)
-		if check and not self.active then
-			self.active = true
-			self.style = self.styleActive
-			self:setStyle()
-			tooltip:show(self.tipText, {self.geo.x+10, self.geo.y, 4}, self)
-		elseif not check and self.active then
-			self.active = false
-			self.style = self.styleNormal
-			self:setStyle()
-			tooltip:hide(self)
-		end
-		return false
+        local check = self:isInside(pos)
+        if check and not self.active then
+            self.active = true
+            self.style = self.styleActive
+            self:setStyle()
+            tooltip:show(self.tipText, {self.geo.x+10, self.geo.y, 4}, self)
+        elseif not check and self.active then
+            self.active = false
+            self.style = self.styleNormal
+            self:setStyle()
+            tooltip:hide(self)
+        end
+        return false
     end
 ne:init()
 addToPlayLayout('btnSub')
@@ -677,7 +675,7 @@ ne.render = function(self)
         self.pack[4] = ass.text
     end
 ne.responder['resize'] = function(self)
-		self.geo.x = 55
+        self.geo.x = 55
         self.geo.y = player.geo.refY - 30
         self:setPos()
         self:setHitBox()
@@ -700,8 +698,8 @@ ne.responder['mbtn_left_up'] = function(self, pos)
         return false
     end
 ne.responder['skip-file-buttons'] = function(self, arg)
-		self.visible = arg
-	end
+        self.visible = arg
+    end
 ne:init()
 addToPlayLayout('btnPrev')
 
@@ -730,7 +728,7 @@ ne.render = function(self)
         self.pack[4] = ass.text
     end
 ne.responder['resize'] = function(self)
-		self.geo.x = 85
+        self.geo.x = 85
         self.geo.y = player.geo.refY - 30
         self:setPos()
         self:setHitBox()
@@ -754,8 +752,8 @@ ne.responder['mbtn_left_up'] = function(self, pos)
         return false
     end
 ne.responder['skip-file-buttons'] = function(self, arg)
-		self.visible = arg
-	end
+        self.visible = arg
+    end
 ne:init()
 addToPlayLayout('btnNext')
 
@@ -777,7 +775,7 @@ ne.responder['resize'] = function(self)
         return false
     end
 ne.responder['fullscreen'] = function(self)
-		self.visible = player.fullscreen
+        self.visible = player.fullscreen
         return false
     end
 ne.responder['mbtn_left_up'] = function(self, pos)
