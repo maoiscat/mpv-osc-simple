@@ -96,7 +96,8 @@ end
 -- cycle through tracks
 -- name: 'video', 'audio' or 'sub'
 -- direction: optional 'next' or 'prev', default is 'next'
-function cycleTrack(name, direction)
+-- id1: optional lower track id limit NUMBER, default is 0
+function cycleTrack(name, direction, id1)
     local current = getTrack(name)
     local index
     local tracks = getTrackList()
@@ -107,8 +108,9 @@ function cycleTrack(name, direction)
     else
         index = current + 1
     end
-    if index > #tracks then index = 1
-        elseif index < 1 then index = #tracks
+    if not id1 then id1 = 0 end
+    if index > #tracks then index = id1
+        elseif index < id1 then index = #tracks
             end
     local newTrack
     
@@ -135,45 +137,45 @@ end
 
 -- stand alone version of setPos, setStyle, setAlpha function 
 function getPos(geo)
-	if not geo then return '' end
-	return string.format('{\\pos(%f,%f)\\an%d}', geo.x, geo.y, geo.an)
+    if not geo then return '' end
+    return string.format('{\\pos(%f,%f)\\an%d}', geo.x, geo.y, geo.an)
 end
 
 function getAlpha(style, trans)
-	if not style or not trans then return '' end
-	local alpha = {0, 0, 0, 0}
-	if style.alpha then
-		for i = 1, 4 do
-			alpha[i] = 255 - (((1-(style.alpha[i]/255)) * (1-trans)) * 255)
-		end
-	else
-		alpha = {trans*255, trans*255, trans*255, trans*255}
-	end
-	return string.format('{\\1a&H%x&\\2a&H%x&\\3a&H%x&\\4a&H%x&}', alpha[1], alpha[2], alpha[3], alpha[4])
+    if not style or not trans then return '' end
+    local alpha = {0, 0, 0, 0}
+    if style.alpha then
+        for i = 1, 4 do
+            alpha[i] = 255 - (((1-(style.alpha[i]/255)) * (1-trans)) * 255)
+        end
+    else
+        alpha = {trans*255, trans*255, trans*255, trans*255}
+    end
+    return string.format('{\\1a&H%x&\\2a&H%x&\\3a&H%x&\\4a&H%x&}', alpha[1], alpha[2], alpha[3], alpha[4])
 end
 
 function getStyle(style)
-	if not style then return '' end
-	local fmt = {'{'}
-	if style.color then
-		table.insert(fmt, 
-			string.format('\\1c&H%s&\\2c&H%s&\\3c&H%s&\\4c&H%s&',
-				style.color[1], style.color[2], style.color[3], style.color[4]))
-	end
-	if style.border then
-		table.insert(fmt, string.format('\\bord%.2f', style.border)) end
-	if style.blur then
-		table.insert(fmt, string.format('\\blur%.2f', style.blur)) end
-	if style.shadow then
-		table.insert(fmt, string.format('\\shad%.2f', style.shadow)) end
-	if style.font then
-		table.insert(fmt, string.format('\\fn%s', style.font)) end
-	if style.fontsize then
-		table.insert(fmt, string.format('\\fs%d', style.fontsize)) end
-	if style.wrap then
-		table.insert(fmt, string.format('\\q%d', style.wrap)) end
-	table.insert(fmt, '}')
-	return table.concat(fmt)
+    if not style then return '' end
+    local fmt = {'{'}
+    if style.color then
+        table.insert(fmt, 
+            string.format('\\1c&H%s&\\2c&H%s&\\3c&H%s&\\4c&H%s&',
+                style.color[1], style.color[2], style.color[3], style.color[4]))
+    end
+    if style.border then
+        table.insert(fmt, string.format('\\bord%.2f', style.border)) end
+    if style.blur then
+        table.insert(fmt, string.format('\\blur%.2f', style.blur)) end
+    if style.shadow then
+        table.insert(fmt, string.format('\\shad%.2f', style.shadow)) end
+    if style.font then
+        table.insert(fmt, string.format('\\fn%s', style.font)) end
+    if style.fontsize then
+        table.insert(fmt, string.format('\\fs%d', style.fontsize)) end
+    if style.wrap then
+        table.insert(fmt, string.format('\\q%d', style.wrap)) end
+    table.insert(fmt, '}')
+    return table.concat(fmt)
 end
 
 -- ass draw alias

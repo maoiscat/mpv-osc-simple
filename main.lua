@@ -533,14 +533,14 @@ ne.responder['file-loaded'] = function(self)
     end
 ne.responder['mbtn_left_up'] = function(self, pos)
         if self.visible and self:isInside(pos) then
-            cycleTrack('audio')
+            cycleTrack('audio', nil, 1)
             return true
         end
         return false
     end
 ne.responder['mbtn_right_up'] = function(self, pos)
         if self.visible and self:isInside(pos) then
-            cycleTrack('audio', 'prev')
+            cycleTrack('audio', 'prev', 1)
             return true
         end
         return false
